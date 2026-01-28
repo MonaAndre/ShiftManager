@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftManager", "ShiftManager\ShiftManager.csproj", "{FFD9072F-697E-4EB9-9B4F-98602D20761A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFD9072F-697E-4EB9-9B4F-98602D20761A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD9072F-697E-4EB9-9B4F-98602D20761A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD9072F-697E-4EB9-9B4F-98602D20761A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD9072F-697E-4EB9-9B4F-98602D20761A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

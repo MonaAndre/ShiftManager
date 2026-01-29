@@ -8,10 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Data\Entities\" />
       <Folder Include="Data\Repositories\" />
-      <Folder Include="Domain\Models\" />
-      <Folder Include="Domain\Repositories\" />
+      <Folder Include="Domain\Interfaces\" />
     </ItemGroup>
 
     <ItemGroup>

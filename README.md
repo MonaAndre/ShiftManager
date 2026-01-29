@@ -2,7 +2,7 @@
 
 - [x] Minst 3 entiteter
 - [x] Minst en 1–M-relation
-- [ ] Minst en M–M-relation
+- [x] Minst en M–M-relation
 - [x] Code first med minst 1 migration
 - [x] Minst 3 constraints (t.ex. [Required] , [MaxLength] , unique index), gäller ej foreign key constraints
 - [ ] Seed-data för att kunna testa applikationen
@@ -15,7 +15,7 @@
 ## Krav för VG (Väl Godkänt)Krav för VG (Väl Godkänt)
 
 Utöver samtliga G-krav ska du uppfylla alla följande krav:
-- [ ] Minst 4 entiteter
+- [x] Minst 4 entiteter
 - [ ] Minst 3 migrationer
 - [x] Minst 5 constraints konfigurerade med Fluent API i OnModelCreating (t.ex. IsRequired() , HasMaxLength() , HasIndex() , HasDefaultValue() ), gäller
        ej foreign key constraints

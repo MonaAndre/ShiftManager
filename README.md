@@ -1,0 +1,30 @@
+## Krav för G (Godkänt)
+
+- [ ] Minst 3 entiteter
+- [ ] Minst en 1–M-relation
+- [ ] Minst en M–M-relation
+- [ ] Code first med minst 1 migration
+- [ ] Minst 3 constraints3 constraints (t.ex. [Required] , [MaxLength] , unique index), gäller ej foreign key constraints
+- [ ] Seed-data för att kunna testa applikationen
+- [ ] Kunna skapa, läsa, uppdatera och ta bort data (CRUD)
+- [ ] Minst 1 operation som hanterar relationer (t.ex. lägga till/ta bort koppling i M–M)
+- [ ] Använda Include för att hämta relaterad data
+- [ ] README som innehåller instruktioner för seed och att köra projektet
+
+
+## Krav för VG (Väl Godkänt)Krav för VG (Väl Godkänt)
+
+Utöver samtliga G-krav ska du uppfylla alla följande krav:
+- [ ] Minst 4 entiteter
+- [ ] Minst 3 migrationer
+- [ ] Minst 5 constraints konfigurerade med Fluent API i OnModelCreating (t.ex. IsRequired() , HasMaxLength() , HasIndex() , HasDefaultValue() ), gäller
+       ej foreign key constraints
+- [ ] Använd AsNoTracking() på samtliga läsoperationer där data inte ska uppdateras
+- [ ] Använd projektering med Select() för att endast hämta nödvändig data (minst 1 query)
+- [ ] Minst 1 aggregering (t.ex. Count() , Sum() , Average() , GroupBy )
+- [ ] Använd explicit transaktion ( BeginTransaction / CommitAsync ) för minst 1 operation1 operation som involverar flera relaterade skrivningar
+
+
+## InlämningInlämning
+
+ZIP-fil med projektet inklusive en README-fil.

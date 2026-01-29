@@ -19,4 +19,5 @@ public class Employee
     [ForeignKey(nameof(DepartmentId))] public virtual Department Department { get; set; } = null!;
     
     public ICollection<EmployeeRole> EmployeeRoles { get; set; } = new List<EmployeeRole>();
+    public ICollection<Shift> Shifts { get; set; } = new List<Shift>();
 }

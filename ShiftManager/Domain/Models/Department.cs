@@ -12,4 +12,5 @@ public class Department
 
     [Required] [MaxLength(100)] public string DepartmentName { get; set; } = string.Empty;
     public ICollection<Employee> Employees { get; set; } = new List<Employee>();
+    public ICollection<Shift> Shifts { get; set; } = new List<Shift>();
 }

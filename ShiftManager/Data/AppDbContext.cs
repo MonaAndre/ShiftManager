@@ -120,29 +120,103 @@ public class AppDbContext : DbContext
                 .HasForeignKey(er => er.RoleId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
-        
+
         modelBuilder.Entity<EmployeeRole>().HasData(
             new EmployeeRole
             {
                 EmployeeId = 1,
-                RoleId = 1 
+                RoleId = 1
             },
             new EmployeeRole
             {
                 EmployeeId = 1,
-                RoleId = 2 
+                RoleId = 2
             },
             new EmployeeRole
             {
                 EmployeeId = 2,
-                RoleId = 3 
+                RoleId = 3
             },
             new EmployeeRole
             {
                 EmployeeId = 3,
-                RoleId = 3 
+                RoleId = 3
             }
         );
-
+        modelBuilder.Entity<Shift>(shift =>
+        {
+            shift.HasKey(s => s.ShiftId);
+            shift.Property(s => s.ShiftId).ValueGeneratedOnAdd();
+            shift.Property(s => s.EmployeeId);
+            shift.HasOne(s => s.Employee)
+                .WithMany(e => e.Shifts)
+                .HasForeignKey(s => s.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade);
+            shift.Property(s => s.DepartmentId);
+            shift.HasOne(s => s.Department)
+                .WithMany(d => d.Shifts)
+                .HasForeignKey(s => s.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
+            shift.Property(s => s.StartDate).IsRequired();
+            shift.Property(s => s.EndDate).IsRequired();
+            shift.Property(s => s.CreatedAt).HasDefaultValueSql("now()");
+        });
+        var seedCreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, DateTimeKind.Utc);
+        modelBuilder.Entity<Shift>().HasData(
+            new Shift
+            {
+                ShiftId = 1,
+                EmployeeId = 1,
+                DepartmentId = 2,
+                StartDate = new DateTime(2026, 2, 2, 8, 0, 0, DateTimeKind.Utc),
+                EndDate = new DateTime(2026, 2, 2, 16, 0, 0, DateTimeKind.Utc),
+                CreatedAt = seedCreatedAt
+            },
+            new Shift
+            {
+                ShiftId = 2,
+                EmployeeId = 1,
+                DepartmentId = 2,
+                StartDate = new DateTime(2026, 2, 3, 8, 0, 0, DateTimeKind.Utc),
+                EndDate = new DateTime(2026, 2, 3, 16, 0, 0, DateTimeKind.Utc),
+                CreatedAt = seedCreatedAt
+            },
+            new Shift
+            {
+                ShiftId = 3,
+                EmployeeId = 2,
+                DepartmentId = 3,
+                StartDate = new DateTime(2026, 2, 2, 9, 0, 0, DateTimeKind.Utc),
+                EndDate = new DateTime(2026, 2, 2, 17, 0, 0, DateTimeKind.Utc),
+                CreatedAt = seedCreatedAt
+            },
+            new Shift
+            {
+                ShiftId = 4,
+                EmployeeId = 2,
+                DepartmentId = 3,
+                StartDate = new DateTime(2026, 2, 3, 9, 0, 0, DateTimeKind.Utc),
+                EndDate = new DateTime(2026, 2, 3, 17, 0, 0, DateTimeKind.Utc),
+                CreatedAt = seedCreatedAt
+            },
+            new Shift
+            {
+                ShiftId = 5,
+                EmployeeId = 3,
+                DepartmentId = 1,
+                StartDate = new DateTime(2026, 2, 2, 10, 0, 0, DateTimeKind.Utc),
+                EndDate = new DateTime(2026, 2, 2, 18, 0, 0, DateTimeKind.Utc),
+                CreatedAt = seedCreatedAt
+            },
+            new Shift
+            {
+                ShiftId = 6,
+                EmployeeId = 3,
+                DepartmentId = 1,
+                StartDate = new DateTime(2026, 2, 3, 10, 0, 0, DateTimeKind.Utc),
+                EndDate = new DateTime(2026, 2, 3, 18, 0, 0, DateTimeKind.Utc),
+                CreatedAt = seedCreatedAt
+            }
+        );
     }
 }

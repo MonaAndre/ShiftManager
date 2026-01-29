@@ -5,7 +5,7 @@
 - [x] Minst en M–M-relation
 - [x] Code first med minst 1 migration
 - [x] Minst 3 constraints (t.ex. [Required] , [MaxLength] , unique index), gäller ej foreign key constraints
-- [ ] Seed-data för att kunna testa applikationen
+- [x] Seed-data för att kunna testa applikationen
 - [ ] Kunna skapa, läsa, uppdatera och ta bort data (CRUD)
 - [ ] Minst 1 operation som hanterar relationer (t.ex. lägga till/ta bort koppling i M–M)
 - [ ] Använda Include för att hämta relaterad data
@@ -16,7 +16,7 @@
 
 Utöver samtliga G-krav ska du uppfylla alla följande krav:
 - [x] Minst 4 entiteter
-- [ ] Minst 3 migrationer
+- [x] Minst 3 migrationer
 - [x] Minst 5 constraints konfigurerade med Fluent API i OnModelCreating (t.ex. IsRequired() , HasMaxLength() , HasIndex() , HasDefaultValue() ), gäller
        ej foreign key constraints
 - [ ] Använd AsNoTracking() på samtliga läsoperationer där data inte ska uppdateras

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ShiftManager.Data;
@@ -11,9 +12,11 @@ using ShiftManager.Data;
 namespace ShiftManager.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260129154513_AddShifts")]
+    partial class AddShifts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -274,7 +277,7 @@ namespace ShiftManager.Migrations
                         new
                         {
                             ShiftId = 1,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 29, 15, 45, 13, 375, DateTimeKind.Utc).AddTicks(1280),
                             DepartmentId = 2,
                             EmployeeId = 1,
                             EndDate = new DateTime(2026, 2, 2, 16, 0, 0, 0, DateTimeKind.Utc),
@@ -283,7 +286,7 @@ namespace ShiftManager.Migrations
                         new
                         {
                             ShiftId = 2,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 29, 15, 45, 13, 375, DateTimeKind.Utc).AddTicks(1930),
                             DepartmentId = 2,
                             EmployeeId = 1,
                             EndDate = new DateTime(2026, 2, 3, 16, 0, 0, 0, DateTimeKind.Utc),
@@ -292,7 +295,7 @@ namespace ShiftManager.Migrations
                         new
                         {
                             ShiftId = 3,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 29, 15, 45, 13, 375, DateTimeKind.Utc).AddTicks(1930),
                             DepartmentId = 3,
                             EmployeeId = 2,
                             EndDate = new DateTime(2026, 2, 2, 17, 0, 0, 0, DateTimeKind.Utc),
@@ -301,7 +304,7 @@ namespace ShiftManager.Migrations
                         new
                         {
                             ShiftId = 4,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 29, 15, 45, 13, 375, DateTimeKind.Utc).AddTicks(1930),
                             DepartmentId = 3,
                             EmployeeId = 2,
                             EndDate = new DateTime(2026, 2, 3, 17, 0, 0, 0, DateTimeKind.Utc),
@@ -310,7 +313,7 @@ namespace ShiftManager.Migrations
                         new
                         {
                             ShiftId = 5,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 29, 15, 45, 13, 375, DateTimeKind.Utc).AddTicks(1940),
                             DepartmentId = 1,
                             EmployeeId = 3,
                             EndDate = new DateTime(2026, 2, 2, 18, 0, 0, 0, DateTimeKind.Utc),
@@ -319,7 +322,7 @@ namespace ShiftManager.Migrations
                         new
                         {
                             ShiftId = 6,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 29, 15, 45, 13, 375, DateTimeKind.Utc).AddTicks(1940),
                             DepartmentId = 1,
                             EmployeeId = 3,
                             EndDate = new DateTime(2026, 2, 3, 18, 0, 0, 0, DateTimeKind.Utc),

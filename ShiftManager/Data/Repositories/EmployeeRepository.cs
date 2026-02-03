@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShiftManager.Domain.Interfaces;
+using ShiftManager.Domain.Interfaces.Repositories;
 using ShiftManager.Domain.Models;
 
 namespace ShiftManager.Data.Repositories;

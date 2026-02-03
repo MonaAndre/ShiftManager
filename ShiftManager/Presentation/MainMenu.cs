@@ -7,11 +7,13 @@ public class MainMenu
 {
     private readonly DepartmentMenu _departmentMenu;
     private readonly EmployeeMenu _employeeMenu;
+    private readonly RoleMenu _roleMenu;
 
-    public MainMenu(DepartmentMenu departmentMenu, EmployeeMenu employeeMenu)
+    public MainMenu(DepartmentMenu departmentMenu, EmployeeMenu employeeMenu, RoleMenu roleMenu)
     {
         _departmentMenu = departmentMenu;
         _employeeMenu = employeeMenu;
+        _roleMenu = roleMenu;
     }
 
     public void OpenMainMenu()
@@ -52,7 +54,7 @@ public class MainMenu
                    await _employeeMenu.RunEmployeeAsync();
                     break;
                 case 3:
-                    Console.WriteLine("Manage Roles menu");
+                  await  _roleMenu.RunRoleAsync();
                     break;
                 case 4:
                     Console.WriteLine("Manage Shifts menu");

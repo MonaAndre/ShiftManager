@@ -1,6 +1,6 @@
 using ShiftManager.Domain.Models;
 
-namespace ShiftManager.Domain.Interfaces;
+namespace ShiftManager.Domain.Interfaces.Repositories;
 
 public interface IEmployeeRepository
 {

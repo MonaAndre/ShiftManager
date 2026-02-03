@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using ShiftManager.Domain.Interfaces;
+using ShiftManager.Domain.Interfaces.Repositories;
 using ShiftManager.Domain.Models;
 
 namespace ShiftManager.Presentation;

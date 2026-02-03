@@ -7,6 +7,7 @@ public class DepartmentMenu
 {
     private readonly IDepartmentRepository _departmentRepository;
     private readonly ConsoleHelpers _consoleHelpers;
+
     public DepartmentMenu(IDepartmentRepository departmentRepository, ConsoleHelpers consoleHelpers)
     {
         _departmentRepository = departmentRepository;
@@ -107,7 +108,7 @@ public class DepartmentMenu
         Console.WriteLine("Add department");
         var name = _consoleHelpers.ReadNonEmptyString("Enter name and press enter to create new department: ");
         if (name is null) return;
-        
+
         try
         {
             var createdDepartment = await _departmentRepository.CreateNewDepartmentAsync(name);
@@ -127,7 +128,7 @@ public class DepartmentMenu
     {
         Console.Clear();
         Console.WriteLine("Edite department");
-        var id =  _consoleHelpers.ReadInt("Enter id of department that you want to edite and press enter: ");
+        var id = _consoleHelpers.ReadInt("Enter id of department that you want to edite and press enter: ");
         if (id is null) return;
         try
         {
@@ -139,7 +140,7 @@ public class DepartmentMenu
                 return;
             }
 
-            var newDepName =  _consoleHelpers.ReadNonEmptyString("New name: ");
+            var newDepName = _consoleHelpers.ReadNonEmptyString("New name: ");
             if (newDepName is null) return;
             var editedDepartment = await _departmentRepository.UpdateDepartmentAsync(id.Value, newDepName);
             if (editedDepartment is null)
@@ -164,7 +165,7 @@ public class DepartmentMenu
     {
         Console.Clear();
         Console.WriteLine("Delete department");
-        var departmentId =  _consoleHelpers.ReadInt("Enter id of department that you want to delete: ");
+        var departmentId = _consoleHelpers.ReadInt("Enter id of department that you want to delete: ");
         if (departmentId is null) return;
 
         try
@@ -173,6 +174,7 @@ public class DepartmentMenu
             if (!isValidId)
             {
                 Console.WriteLine("Could not find department with this id");
+                _consoleHelpers.Pause();
                 return;
             }
 
@@ -180,6 +182,7 @@ public class DepartmentMenu
             if (!isDeleted)
             {
                 Console.WriteLine("Department was not deleted");
+                _consoleHelpers.Pause();
                 return;
             }
 
@@ -193,6 +196,4 @@ public class DepartmentMenu
 
         _consoleHelpers.Pause();
     }
-
-
 }

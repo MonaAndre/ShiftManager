@@ -57,7 +57,7 @@ public class DepartmentRepository : IDepartmentRepository
         return false;
     }
 
-    public async Task<bool> IsValidDepId(int departmentId)
+    public async Task<bool> IsValidDepIdAsync(int departmentId)
     {
         return await _context.Departments
             .AsNoTracking()

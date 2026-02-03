@@ -6,35 +6,37 @@ namespace ShiftManager.Presentation;
 public class DepartmentMenu
 {
     private readonly IDepartmentRepository _departmentRepository;
-
-    public DepartmentMenu(IDepartmentRepository departmentRepository)
+    private readonly ConsoleHelpers _consoleHelpers;
+    public DepartmentMenu(IDepartmentRepository departmentRepository, ConsoleHelpers consoleHelpers)
     {
         _departmentRepository = departmentRepository;
+        _consoleHelpers = consoleHelpers;
     }
 
     private void OpenDepartmentMenu()
     {
-        // Console.Clear();
-        Console.WriteLine("----------- Departments management ------------");
+        Console.WriteLine("----------- Department management ------------");
         Console.WriteLine("You can:");
         Console.WriteLine("1. List departments");
         Console.WriteLine("2. Add new department");
         Console.WriteLine("3. Update department");
         Console.WriteLine("4. Delete department");
         Console.WriteLine("5. Back to main menu");
+        Console.WriteLine("--------------------------------------------");
     }
 
     public async Task RunDepartmentAsync()
     {
         while (true)
         {
+            Console.Clear();
             OpenDepartmentMenu();
-            Console.Write("Chose option 1-5: ");
+            Console.Write("Choose option 1-5: ");
             var input = Console.ReadLine()?.Trim();
             if (!int.TryParse(input, out var choice))
             {
                 Console.Clear();
-                Console.WriteLine("Ogiltigt val. Ange en siffra.");
+                Console.WriteLine("Invalid choice. Please enter a number.");
                 continue;
             }
 
@@ -49,7 +51,7 @@ public class DepartmentMenu
                     await AddDepartment();
                     break;
                 case 3:
-                    await EditeDepartment();
+                    await EditDepartment();
                     break;
                 case 4:
                     await DeleteDepartment();
@@ -61,7 +63,8 @@ public class DepartmentMenu
                 {
                     Console.Clear();
                     Console.WriteLine("Invalid option");
-                    return;
+                    _consoleHelpers.Pause();
+                    break;
                 }
             }
         }
@@ -77,6 +80,8 @@ public class DepartmentMenu
             if (departmentsList.Count == 0)
             {
                 Console.WriteLine("No departments found");
+                _consoleHelpers.Pause();
+                return;
             }
 
             foreach (var d in departmentsList)
@@ -92,20 +97,17 @@ public class DepartmentMenu
         {
             Console.WriteLine("Failed to get departments :" + e);
         }
+
+        _consoleHelpers.Pause();
     }
 
     private async Task AddDepartment()
     {
         Console.Clear();
         Console.WriteLine("Add department");
-        Console.Write("Enter name and press enter to create new department: ");
-        var name = Console.ReadLine()?.Trim();
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            Console.WriteLine("Name can not be empty");
-            return;
-        }
-
+        var name = _consoleHelpers.ReadNonEmptyString("Enter name and press enter to create new department: ");
+        if (name is null) return;
+        
         try
         {
             var createdDepartment = await _departmentRepository.CreateNewDepartmentAsync(name);
@@ -116,83 +118,81 @@ public class DepartmentMenu
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
+
+        _consoleHelpers.Pause();
     }
 
-    private async Task EditeDepartment()
+    private async Task EditDepartment()
     {
         Console.Clear();
         Console.WriteLine("Edite department");
-        Console.Write("Enter id of department that you want to edite and press enter: ");
-        var input = Console.ReadLine()?.Trim();
-        if (!int.TryParse(input, out var id))
-        {
-            Console.WriteLine("Id must be an integer");
-            return;
-        }
-
-        var isValidId = await _departmentRepository.IsValidDepId(id);
-        if (!isValidId)
-        {
-            Console.WriteLine("Could not find department with this id");
-            return;
-        }
-
-        Console.Write("Enter new name: ");
-        var newDepName = Console.ReadLine()?.Trim();
-        if (string.IsNullOrWhiteSpace(newDepName))
-        {
-            Console.WriteLine("Name can not be empty");
-            return;
-        }
-
+        var id =  _consoleHelpers.ReadInt("Enter id of department that you want to edite and press enter: ");
+        if (id is null) return;
         try
         {
-            var editedDepartment = await _departmentRepository.UpdateDepartmentAsync(id, newDepName);
-            Console.WriteLine("Department was updated: " + "ID: " + editedDepartment.DepartmentId + " New name: " +
-                              editedDepartment.DepartmentName);
+            var isValidId = await _departmentRepository.IsValidDepIdAsync(id.Value);
+            if (!isValidId)
+            {
+                Console.WriteLine("Could not find department with this id");
+                _consoleHelpers.Pause();
+                return;
+            }
+
+            var newDepName =  _consoleHelpers.ReadNonEmptyString("New name: ");
+            if (newDepName is null) return;
+            var editedDepartment = await _departmentRepository.UpdateDepartmentAsync(id.Value, newDepName);
+            if (editedDepartment is null)
+            {
+                Console.WriteLine("Could not update department with this id");
+                _consoleHelpers.Pause();
+                return;
+            }
+
+            Console.WriteLine("Department was updated: " + "ID: " + editedDepartment?.DepartmentId + " New name: " +
+                              editedDepartment?.DepartmentName);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return;
         }
+
+        _consoleHelpers.Pause();
     }
 
     private async Task DeleteDepartment()
     {
         Console.Clear();
         Console.WriteLine("Delete department");
-        Console.Write("Enter id of department that you want to delete: ");
-        var input = Console.ReadLine()?.Trim();
-        if (!int.TryParse(input, out var departmentId))
-        {
-            Console.WriteLine("Not a valid id");
-            return;
-        }
-
-        var isValidId = await _departmentRepository.IsValidDepId(departmentId);
-        if (!isValidId)
-        {
-            Console.WriteLine("Could not find department with this id");
-            return;
-        }
+        var departmentId =  _consoleHelpers.ReadInt("Enter id of department that you want to delete: ");
+        if (departmentId is null) return;
 
         try
         {
-            var isDeleted = await _departmentRepository.DeleteDepartmentAsync(departmentId);
+            var isValidId = await _departmentRepository.IsValidDepIdAsync(departmentId.Value);
+            if (!isValidId)
+            {
+                Console.WriteLine("Could not find department with this id");
+                return;
+            }
+
+            var isDeleted = await _departmentRepository.DeleteDepartmentAsync(departmentId.Value);
             if (!isDeleted)
             {
                 Console.WriteLine("Department was not deleted");
+                return;
             }
+
 
             Console.WriteLine("Department was deleted: " + "ID: " + departmentId);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
+
+        _consoleHelpers.Pause();
     }
+
+
 }

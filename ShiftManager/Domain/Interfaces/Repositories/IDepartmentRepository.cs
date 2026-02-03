@@ -8,5 +8,5 @@ public interface IDepartmentRepository
     Task<Department> CreateNewDepartmentAsync(string name);
     Task<Department?> UpdateDepartmentAsync(int id, string name);
     Task<bool> DeleteDepartmentAsync(int id);
-    Task<bool> IsValidDepId(int departmentId);
+    Task<bool> IsValidDepIdAsync(int departmentId);
 }

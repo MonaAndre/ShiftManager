@@ -47,12 +47,19 @@ public class DepartmentRepository : IDepartmentRepository
     public async Task<bool> DeleteDepartmentAsync(int id)
     {
         var departmentToDelete = await _context.Departments.FirstOrDefaultAsync(d => d.DepartmentId == id);
+        var hasEmployees = await _context.Employees.Where(e => e.DepartmentId == id).AnyAsync();
+        if (hasEmployees)
+        {
+            Console.WriteLine("Can not delete department that has emloyees!");
+            return false;
+        }
         if (departmentToDelete != null)
         {
             _context.Departments.Remove(departmentToDelete);
             await _context.SaveChangesAsync();
             return true;
         }
+        
 
         return false;
     }

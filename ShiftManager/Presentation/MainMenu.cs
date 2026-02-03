@@ -6,10 +6,12 @@ namespace ShiftManager.Presentation;
 public class MainMenu
 {
     private readonly DepartmentMenu _departmentMenu;
+    private readonly EmployeeMenu _employeeMenu;
 
-    public MainMenu(DepartmentMenu departmentMenu)
+    public MainMenu(DepartmentMenu departmentMenu, EmployeeMenu employeeMenu)
     {
         _departmentMenu = departmentMenu;
+        _employeeMenu = employeeMenu;
     }
 
     public void OpenMainMenu()
@@ -24,6 +26,7 @@ public class MainMenu
         Console.WriteLine("6. Role assignments");
         Console.WriteLine("7. Scheduling");
         Console.WriteLine("8. Exit");
+        Console.WriteLine("--------------------------------------------");
     }
 
     public async Task RunMainAsync()
@@ -46,7 +49,7 @@ public class MainMenu
                     await _departmentMenu.RunDepartmentAsync();
                     break;
                 case 2:
-                    Console.WriteLine("Manage employee menu");
+                   await _employeeMenu.RunEmployeeAsync();
                     break;
                 case 3:
                     Console.WriteLine("Manage Roles menu");

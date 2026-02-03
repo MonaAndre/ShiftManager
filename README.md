@@ -12,7 +12,7 @@
 - [ ] README som innehåller instruktioner för seed och att köra projektet
 
 
-## Krav för VG (Väl Godkänt)Krav för VG (Väl Godkänt)
+## Krav för VG (Väl Godkänt)
 
 Utöver samtliga G-krav ska du uppfylla alla följande krav:
 - [x] Minst 4 entiteter

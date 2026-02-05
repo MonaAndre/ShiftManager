@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace ShiftManager.Presentation;
 
 public class ConsoleHelpers
@@ -30,6 +32,20 @@ public class ConsoleHelpers
         }
 
         return input;
+    }
+
+    public DateTime? ReadDateTime(string prompt)
+    {
+        Console.Write(prompt);
+        var input = Console.ReadLine()?.Trim();
+        if (!DateTime.TryParseExact(input,"yyyy-MM-dd HH:mm",CultureInfo.InvariantCulture,
+                DateTimeStyles.AssumeLocal | DateTimeStyles.AdjustToUniversal,out var utcDate))
+        {
+            Console.WriteLine("Invalid date. Please use format: yyyy-MM-dd HH:mm");
+            Pause();
+            return null;
+        }
+        return utcDate;
     }
 
     public void Pause()

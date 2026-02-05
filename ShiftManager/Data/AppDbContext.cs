@@ -8,6 +8,7 @@ public class AppDbContext : DbContext
     public DbSet<Department> Departments => Set<Department>();
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<Role> Roles => Set<Role>();
+    public DbSet<Shift> Shifts => Set<Shift>();
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -159,7 +160,8 @@ public class AppDbContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
             shift.Property(s => s.StartDate).IsRequired();
             shift.Property(s => s.EndDate).IsRequired();
-            shift.Property(s => s.CreatedAt).HasDefaultValueSql("now()");
+            shift.Property(s => s.CreatedAt)
+                .HasDefaultValueSql("now()"); //"timezone('utc',now()).ValueGeneratedOnAdd();"
         });
         var seedCreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, DateTimeKind.Utc);
         modelBuilder.Entity<Shift>().HasData(

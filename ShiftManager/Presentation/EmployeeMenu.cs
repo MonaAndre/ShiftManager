@@ -152,7 +152,7 @@ public class EmployeeMenu
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Failed to get employee details: " + ex.Message);
+            Console.WriteLine("Failed to get employee details");
         }
 
         _consoleHelpers.Pause();
@@ -182,7 +182,7 @@ public class EmployeeMenu
         }
 
         Console.WriteLine("\nAvailable departments:");
-        await PrintDepartmentsAsync();
+        await _departmentRepository.PrintDepartmentsAsync();
 
         var depId = _consoleHelpers.ReadInt("Department id: ");
         if (depId is null) return;
@@ -253,7 +253,7 @@ public class EmployeeMenu
             }
 
             Console.WriteLine("\nAvailable departments:");
-            await PrintDepartmentsAsync();
+            await _departmentRepository.PrintDepartmentsAsync();
 
             var depId = _consoleHelpers.ReadInt("New department id: ");
             if (depId is null) return;
@@ -321,26 +321,4 @@ public class EmployeeMenu
 
         _consoleHelpers.Pause();
     }
-
-    private async Task PrintDepartmentsAsync()
-    {
-        try
-        {
-            var departments = await _departmentRepository.GetDepartmentsAsync();
-            if (departments.Count == 0)
-            {
-                Console.WriteLine("(no departments)");
-                return;
-            }
-
-            foreach (var d in departments)
-                Console.WriteLine($"ID: {d.DepartmentId} | {d.DepartmentName}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failed to load departments: " + ex.Message);
-        }
-    }
-
-  
 }

@@ -97,5 +97,45 @@ public class EmployeeRepository : IEmployeeRepository
             .AsNoTracking()
             .AnyAsync(e => e.EmployeeId == employeeId);
     }
+
+    public async Task<bool> IsValidEmployeeIdDepartmentAsync(int employeeId, int departmentId)
+    {
+        return await _context.Employees.AnyAsync(e => e.EmployeeId == employeeId && e.DepartmentId == departmentId);
+        
+    }
+    public async Task<bool> PrintEmployeesByDepartmentAsync(int departmentId)
+    {
+        var employees = await _context.Employees
+            .AsNoTracking()
+            .Include(e => e.Department)
+            .Where(e => e.DepartmentId == departmentId)
+            .OrderBy(e => e.EmployeeId)
+            .ToListAsync();
+
+        if (!employees.Any())
+        {
+            Console.WriteLine("No employees found for this department.");
+            return false;
+        }
+
+        var departmentName = employees.First().Department.DepartmentName;
+
+        Console.WriteLine($"Employees from department: {departmentName}");
+        Console.WriteLine("----------------------------------------");
+
+        foreach (var e in employees)
+        {
+            Console.WriteLine(
+                $"ID: {e.EmployeeId} | " +
+                $"{e.FirstName} {e.LastName} | " +
+                $"{e.Email}"
+            );
+        }
+
+        Console.WriteLine("----------------------------------------");
+
+        return true;
+    }
+
     
 }

@@ -12,5 +12,7 @@ public interface IEmployeeRepository
     Task<Employee?> UpdateEmployeeAsync(int employeeId, string firstName, string lastName, string email, int departmentId);
     Task<bool> DeleteEmployeeAsync(int employeeId);
     Task<bool> IsValidEmployeeIdAsync(int employeeId);
-    
+    Task<bool> IsValidEmployeeIdDepartmentAsync(int employeeId, int departmentId);
+    Task<bool> PrintEmployeesByDepartmentAsync(int departmentId);
+
 }

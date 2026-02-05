@@ -9,4 +9,5 @@ public interface IDepartmentRepository
     Task<Department?> UpdateDepartmentAsync(int id, string name);
     Task<bool> DeleteDepartmentAsync(int id);
     Task<bool> IsValidDepIdAsync(int departmentId);
+    Task<bool> PrintDepartmentsAsync();
 }

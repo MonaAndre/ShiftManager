@@ -16,8 +16,10 @@ public class ShiftManagerApp
         var roleMenu = new RoleMenu(roleRepo, consoleHelpers);
         var employeeRepo = new EmployeeRepository(appContext);
         var employeeMenu = new EmployeeMenu(employeeRepo, departmentRepo, consoleHelpers);
+        var shiftRepo = new ShiftRepository(appContext);
+        var shiftMenu = new ShiftMenu(shiftRepo, departmentRepo,employeeRepo, consoleHelpers);
 
-        var menu = new MainMenu(departmentMenu, employeeMenu, roleMenu);
+        var menu = new MainMenu(departmentMenu, employeeMenu, roleMenu, shiftMenu);
         await menu.RunMainAsync();
     }
 }

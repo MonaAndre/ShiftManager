@@ -70,4 +70,26 @@ public class DepartmentRepository : IDepartmentRepository
             .AsNoTracking()
             .AnyAsync(d => d.DepartmentId == departmentId);
     }
+    
+    public async Task <bool> PrintDepartmentsAsync()
+    {
+        try
+        {
+            var departments = await GetDepartmentsAsync();
+            if (departments.Count == 0)
+            {
+                Console.WriteLine("(no departments)");
+                return false;
+            }
+
+            foreach (var d in departments)
+                Console.WriteLine($"ID: {d.DepartmentId} | {d.DepartmentName}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Failed to load departments: " + ex.Message);
+            return false;
+        }
+    }
 }

@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<Shift> Shifts => Set<Shift>();
+    public DbSet<EmployeeRole> EmployeeRoles => Set<EmployeeRole>();
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

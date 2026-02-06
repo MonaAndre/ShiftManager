@@ -9,4 +9,5 @@ public interface IRoleRepository
     Task<Role?> UpdateRoleAsync(int id, string name, string description);
     Task<bool> DeleteRoleAsync(int id);
     Task<bool> IsValidRoleIdAsync(int roleId);
+    Task PrintRolesAsync();
 }

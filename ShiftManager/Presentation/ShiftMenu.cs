@@ -185,7 +185,7 @@ public class ShiftMenu
 
             if (start is null) return;
 
-            if (start < DateTime.UtcNow)
+            if (start.Value < DateTime.UtcNow)
             {
                 Console.WriteLine("Start date cannot be in the past.");
                 _consoleHelpers.Pause();
@@ -194,7 +194,7 @@ public class ShiftMenu
 
             var end = _consoleHelpers.ReadDateTime("Enter end date and time (yyyy-MM-dd HH:mm)");
             if (end is null) return;
-            if (end < start)
+            if (end.Value < start.Value)
             {
                 Console.WriteLine("End date and time must be later than start date.");
                 _consoleHelpers.Pause();
@@ -277,7 +277,7 @@ public class ShiftMenu
             var start = _consoleHelpers.ReadDateTime("Enter new start date and time (yyyy-MM-dd HH:mm): ");
             if (start is null) return;
 
-            if (start < DateTime.UtcNow)
+            if (start.Value < DateTime.UtcNow)
             {
                 Console.WriteLine(start);
                 Console.WriteLine("Start date cannot be in the past.");
@@ -333,6 +333,7 @@ public class ShiftMenu
 
             var shiftId = _consoleHelpers.ReadInt("Enter shift id to delete: ");
             if (shiftId is null) return;
+          
 
             var shift = await _shiftRepository.FindShiftAsync(shiftId.Value);
             if (shift is null)
@@ -341,7 +342,12 @@ public class ShiftMenu
                 _consoleHelpers.Pause();
                 return;
             }
-
+            if (shift.StartDate <= DateTime.UtcNow)
+            {
+                Console.WriteLine("That shift is in the past and cannot be deleted here.");
+                _consoleHelpers.Pause();
+                return;
+            }
             Console.WriteLine(
                 $"Delete shift {shift.ShiftId}: " +
                 $"{shift.StartDate.ToLocalTime():yyyy-MM-dd HH:mm} → " +

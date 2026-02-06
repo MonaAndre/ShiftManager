@@ -1,5 +1,6 @@
 using ShiftManager.Data;
 using ShiftManager.Data.Repositories;
+using ShiftManager.Domain.Services;
 using ShiftManager.Presentation;
 
 namespace ShiftManager.Domain;
@@ -17,9 +18,11 @@ public class ShiftManagerApp
         var employeeRepo = new EmployeeRepository(appContext);
         var employeeMenu = new EmployeeMenu(employeeRepo, departmentRepo, consoleHelpers);
         var shiftRepo = new ShiftRepository(appContext);
-        var shiftMenu = new ShiftMenu(shiftRepo, departmentRepo,employeeRepo, consoleHelpers);
+        var shiftMenu = new ShiftMenu(shiftRepo, departmentRepo, employeeRepo, consoleHelpers);
+        var rAService = new RoleAssignmentService(appContext, consoleHelpers);
+        var rAMenu = new RoleAssignmentMenu(rAService, roleRepo, employeeRepo, consoleHelpers);
 
-        var menu = new MainMenu(departmentMenu, employeeMenu, roleMenu, shiftMenu);
+        var menu = new MainMenu(departmentMenu, employeeMenu, roleMenu, shiftMenu, rAMenu);
         await menu.RunMainAsync();
     }
 }

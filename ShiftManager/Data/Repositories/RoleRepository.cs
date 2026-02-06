@@ -49,4 +49,23 @@ public class RoleRepository : IRoleRepository
     {
         return await _context.Roles.AnyAsync(r => r.RoleId == roleId);
     }
+
+    public async Task PrintRolesAsync()
+    {
+        try
+        {
+            var roles = await GetRolesAsync();
+            if (roles.Count == 0)
+            {
+                Console.WriteLine("(no roles found)");
+            }
+
+            foreach (var r in roles)
+                Console.WriteLine($"ID: {r.RoleId} | {r.RoleName} | {r.RoleDescription}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Failed to load roles: " + ex.Message);
+        }
+    }
 }

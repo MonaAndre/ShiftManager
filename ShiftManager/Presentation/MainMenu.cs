@@ -9,13 +9,16 @@ public class MainMenu
     private readonly EmployeeMenu _employeeMenu;
     private readonly RoleMenu _roleMenu;
     private readonly ShiftMenu _shiftMenu;
+    private readonly RoleAssignmentMenu _roleAssignmentMenu;
 
-    public MainMenu(DepartmentMenu departmentMenu, EmployeeMenu employeeMenu, RoleMenu roleMenu, ShiftMenu shiftMenu)
+    public MainMenu(DepartmentMenu departmentMenu, EmployeeMenu employeeMenu, RoleMenu roleMenu, ShiftMenu shiftMenu,
+        RoleAssignmentMenu roleAssignmentMenu)
     {
         _departmentMenu = departmentMenu;
         _employeeMenu = employeeMenu;
         _roleMenu = roleMenu;
         _shiftMenu = shiftMenu;
+        _roleAssignmentMenu = roleAssignmentMenu;
     }
 
     public void OpenMainMenu()
@@ -65,7 +68,7 @@ public class MainMenu
                     Console.WriteLine("Reports menu");
                     break;
                 case 6:
-                    Console.WriteLine("Role assignments");
+                    await _roleAssignmentMenu.RunAssignmentAsync();
                     break;
                 case 7:
                     Console.WriteLine("Scheduling");

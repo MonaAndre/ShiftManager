@@ -12,9 +12,10 @@ public class MainMenu
     private readonly ShiftMenu _shiftMenu;
     private readonly RoleAssignmentMenu _roleAssignmentMenu;
     private readonly SchedulingMenu _schedulingMenu;
+    private readonly ReportsMenu _reportsMenu;
 
     public MainMenu(DepartmentMenu departmentMenu, EmployeeMenu employeeMenu, RoleMenu roleMenu, ShiftMenu shiftMenu,
-        RoleAssignmentMenu roleAssignmentMenu, SchedulingMenu schedulingMenu)
+        RoleAssignmentMenu roleAssignmentMenu, SchedulingMenu schedulingMenu, ReportsMenu reportsMenu)
     {
         _departmentMenu = departmentMenu;
         _employeeMenu = employeeMenu;
@@ -22,6 +23,7 @@ public class MainMenu
         _shiftMenu = shiftMenu;
         _roleAssignmentMenu = roleAssignmentMenu;
         _schedulingMenu= schedulingMenu;
+        _reportsMenu= reportsMenu;
     }
 
     public void OpenMainMenu()
@@ -49,7 +51,7 @@ public class MainMenu
             if (!int.TryParse(input, out var choice))
             {
                 Console.Clear();
-                Console.WriteLine("Ogiltigt val. Ange en siffra.");
+                Console.WriteLine("Invalid choice. Please enter a number.");
                 continue;
             }
 
@@ -74,7 +76,7 @@ public class MainMenu
                     await _roleAssignmentMenu.RunAssignmentAsync();
                     break;
                 case 7:
-                    Console.WriteLine("Reports menu");
+                   await _reportsMenu.RunReportsAsync();
                     break;
                 case 8:
                     return;

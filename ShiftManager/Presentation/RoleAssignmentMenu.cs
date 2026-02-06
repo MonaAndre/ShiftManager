@@ -37,6 +37,7 @@ public class RoleAssignmentMenu
         {
             Console.Clear();
             OpenRoleAssignmentMenu();
+            Console.Write("Choose option 1-5: ");
             var input = Console.ReadLine()?.Trim();
             if (!int.TryParse(input, out var choice))
             {

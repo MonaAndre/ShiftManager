@@ -41,7 +41,7 @@ public class ShiftMenu
         {
             Console.Clear();
             OpenShitsMenu();
-            Console.Write("Choose option 1-5: ");
+            Console.Write("Choose option 1-6: ");
             var input = Console.ReadLine()?.Trim();
             if (!int.TryParse(input, out var choice))
             {

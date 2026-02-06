@@ -35,6 +35,7 @@ public class SchedulingMenu
         {
             Console.Clear();
             await OpenSchedulingMenu();
+            Console.Write("Choose option 1-2: ");
             var input = Console.ReadLine()?.Trim();
             if (!int.TryParse(input, out var choice))
             {

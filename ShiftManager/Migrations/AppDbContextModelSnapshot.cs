@@ -108,32 +108,6 @@ namespace ShiftManager.Migrations
                         .HasDatabaseName("ix_employees_email");
 
                     b.ToTable("employees", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = 1,
-                            DepartmentId = 2,
-                            Email = "anna.andersson@company.se",
-                            FirstName = "Anna",
-                            LastName = "Andersson"
-                        },
-                        new
-                        {
-                            EmployeeId = 2,
-                            DepartmentId = 3,
-                            Email = "erik.johansson@company.se",
-                            FirstName = "Erik",
-                            LastName = "Johansson"
-                        },
-                        new
-                        {
-                            EmployeeId = 3,
-                            DepartmentId = 0,
-                            Email = "sara.nilsson@company.se",
-                            FirstName = "Sara",
-                            LastName = "Nilsson"
-                        });
                 });
 
             modelBuilder.Entity("ShiftManager.Domain.Models.EmployeeRole", b =>
@@ -153,28 +127,6 @@ namespace ShiftManager.Migrations
                         .HasDatabaseName("ix_employee_roles_role_id");
 
                     b.ToTable("employee_roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            EmployeeId = 1,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            EmployeeId = 2,
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            EmployeeId = 3,
-                            RoleId = 3
-                        });
                 });
 
             modelBuilder.Entity("ShiftManager.Domain.Models.Role", b =>
@@ -269,62 +221,6 @@ namespace ShiftManager.Migrations
                         .HasDatabaseName("ix_shifts_employee_id");
 
                     b.ToTable("shifts", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ShiftId = 1,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
-                            DepartmentId = 2,
-                            EmployeeId = 1,
-                            EndDate = new DateTime(2026, 2, 2, 16, 0, 0, 0, DateTimeKind.Utc),
-                            StartDate = new DateTime(2026, 2, 2, 8, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            ShiftId = 2,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
-                            DepartmentId = 2,
-                            EmployeeId = 1,
-                            EndDate = new DateTime(2026, 2, 3, 16, 0, 0, 0, DateTimeKind.Utc),
-                            StartDate = new DateTime(2026, 2, 3, 8, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            ShiftId = 3,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
-                            DepartmentId = 3,
-                            EmployeeId = 2,
-                            EndDate = new DateTime(2026, 2, 2, 17, 0, 0, 0, DateTimeKind.Utc),
-                            StartDate = new DateTime(2026, 2, 2, 9, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            ShiftId = 4,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
-                            DepartmentId = 3,
-                            EmployeeId = 2,
-                            EndDate = new DateTime(2026, 2, 3, 17, 0, 0, 0, DateTimeKind.Utc),
-                            StartDate = new DateTime(2026, 2, 3, 9, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            ShiftId = 5,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
-                            DepartmentId = 1,
-                            EmployeeId = 3,
-                            EndDate = new DateTime(2026, 2, 2, 18, 0, 0, 0, DateTimeKind.Utc),
-                            StartDate = new DateTime(2026, 2, 2, 10, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            ShiftId = 6,
-                            CreatedAt = new DateTime(2026, 1, 29, 12, 0, 0, 0, DateTimeKind.Utc),
-                            DepartmentId = 1,
-                            EmployeeId = 3,
-                            EndDate = new DateTime(2026, 2, 3, 18, 0, 0, 0, DateTimeKind.Utc),
-                            StartDate = new DateTime(2026, 2, 3, 10, 0, 0, 0, DateTimeKind.Utc)
-                        });
                 });
 
             modelBuilder.Entity("ShiftManager.Domain.Models.Employee", b =>

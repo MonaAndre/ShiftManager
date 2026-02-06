@@ -21,8 +21,10 @@ public class ShiftManagerApp
         var shiftMenu = new ShiftMenu(shiftRepo, departmentRepo, employeeRepo, consoleHelpers);
         var rAService = new RoleAssignmentService(appContext, consoleHelpers);
         var rAMenu = new RoleAssignmentMenu(rAService, roleRepo, employeeRepo, consoleHelpers);
+        var schedulingService = new SchedulingService(appContext);
+        var schedulingMenu = new SchedulingMenu(departmentRepo, schedulingService, employeeRepo, consoleHelpers);
 
-        var menu = new MainMenu(departmentMenu, employeeMenu, roleMenu, shiftMenu, rAMenu);
+        var menu = new MainMenu(departmentMenu, employeeMenu, roleMenu, shiftMenu, rAMenu, schedulingMenu);
         await menu.RunMainAsync();
     }
 }

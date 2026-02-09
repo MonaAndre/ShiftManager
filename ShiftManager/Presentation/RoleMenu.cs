@@ -136,10 +136,11 @@ public class RoleMenu
     {
         Console.Clear();
         Console.WriteLine("Edite role");
-        var id = _consoleHelpers.ReadInt("Enter id of role that you want to edite: ");
-        if (id is null) return;
         try
         {
+            await _roleRepository.PrintRolesAsync();
+            var id = _consoleHelpers.ReadInt("Enter id of role that you want to edite: ");
+            if (id is null) return;
             var isValidId = await _roleRepository.IsValidRoleIdAsync(id.Value);
             if (!isValidId)
             {
@@ -175,11 +176,11 @@ public class RoleMenu
     {
         Console.Clear();
         Console.WriteLine("Delete role");
-        var id = _consoleHelpers.ReadInt("Enter id of role that you want to delete: ");
-        if (id is null) return;
-
         try
         {
+            await _roleRepository.PrintRolesAsync();
+            var id = _consoleHelpers.ReadInt("Enter id of role that you want to delete: ");
+            if (id is null) return;
             var isValidId = await _roleRepository.IsValidRoleIdAsync(id.Value);
             if (!isValidId)
             {

@@ -33,7 +33,7 @@ public class ReportsMenu
         {
             Console.Clear();
             OpenReportsMenu();
-            Console.WriteLine("Chose option 1-3");
+            Console.WriteLine("Chose option 1-2");
             var input = Console.ReadLine()?.Trim();
             if (!int.TryParse(input, out var choice))
             {

@@ -128,10 +128,11 @@ public class DepartmentMenu
     {
         Console.Clear();
         Console.WriteLine("Edite department");
-        var id = _consoleHelpers.ReadInt("Enter id of department that you want to edite and press enter: ");
-        if (id is null) return;
         try
         {
+            await _departmentRepository.PrintDepartmentsAsync();
+            var id = _consoleHelpers.ReadInt("Enter id of department that you want to edite and press enter: ");
+            if (id is null) return;
             var isValidId = await _departmentRepository.IsValidDepIdAsync(id.Value);
             if (!isValidId)
             {
@@ -165,11 +166,11 @@ public class DepartmentMenu
     {
         Console.Clear();
         Console.WriteLine("Delete department");
-        var departmentId = _consoleHelpers.ReadInt("Enter id of department that you want to delete: ");
-        if (departmentId is null) return;
-
         try
         {
+            await _departmentRepository.PrintDepartmentsAsync();
+            var departmentId = _consoleHelpers.ReadInt("Enter id of department that you want to delete: ");
+            if (departmentId is null) return;
             var isValidId = await _departmentRepository.IsValidDepIdAsync(departmentId.Value);
             if (!isValidId)
             {

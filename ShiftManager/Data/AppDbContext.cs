@@ -14,7 +14,7 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Database=shiftmanagerdb;Username=mona;Password=mona123");
+        optionsBuilder.UseNpgsql("your-connection-string");
         optionsBuilder.UseSnakeCaseNamingConvention();
     }
 
